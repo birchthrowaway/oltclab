@@ -1,0 +1,8 @@
+#!/bin/sh
+
+ldapsearch  -x \
+            -H ldap://ad1.23d0.example.opentlc.com \
+            -D "CN=Administrator,CN=Users,DC=ad1,DC=23d0,DC=example,DC=opentlc,DC=com" \
+            -w "jVMijRwLbI02gFCo2xkjlZ9lxEA7bm7zgg==" \
+            -b "dc=ad1,dc=23d0,dc=example,dc=opentlc,dc=com" \
+
