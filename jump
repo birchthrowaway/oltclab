@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ "${1:0:9}" == "10.10.10." ]; then
+  ssh -F ./ssh.cfg $1
+elif [ "$1" == "frontend" ]; then
+  ssh -F ./ssh.cfg 10.10.10.4
+elif [ "$1" == "db" ]; then
+  ssh -F ./ssh.cfg 10.10.10.6
+elif [ "$1" == "app1" ]; then
+  ssh -F ./ssh.cfg 10.10.10.14
+elif [ "$1" == "app2" ]; then
+  ssh -F ./ssh.cfg 10.10.10.9
+else
+  echo invalid jump host
+fi
