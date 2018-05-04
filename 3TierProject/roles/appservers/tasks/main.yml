@@ -1,0 +1,37 @@
+---
+# tasks file for ./appservers
+- name: install apache
+  package:
+    name: httpd
+    state: latest
+- name: enable apache at boot
+  service:
+    name: httpd
+    enabled: yes
+- name: install tomcat
+  package:
+    name: tomcat
+    state: latest
+- name: enable tomcat at boot
+  service:
+    name: tomcat
+    enabled: yes
+- name: create ansible tomcat directory
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+- name: copy static index.html to tomcat webapps/ansible/index.html
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html
+    mode: 0644
+  notify:
+  - restart tomcat
+- name: start apache
+  service:
+    name: httpd
+    state: started
+- name: start tomcat
+  service:
+    name: tomcat
+    state: started
