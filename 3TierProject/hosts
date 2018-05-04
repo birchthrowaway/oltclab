@@ -1,5 +1,5 @@
 [3tierapp:vars]
-GUID=e997
+GUID=2c01
 
 ###########################################################################
 ### Ansible Vars
@@ -7,7 +7,7 @@ GUID=e997
 timeout=60
 ansible_become=yes
 ansible_ssh_user=ec2-user
-ansible_ssh_private_key_file="~/.ssh/e997key.pem"
+ansible_ssh_private_key_file="~/.ssh/2c01key.pem"
 ansible_ssh_common_args="-o StrictHostKeyChecking=no"
 
 [3tierapp:children]
@@ -17,13 +17,13 @@ appdbs
 
 [frontends]
 ## These are the frontends
-frontend1.e997.internal ansible_ssh_host=frontend1.e997.example.opentlc.com
+frontend1.2c01.internal ansible_ssh_host=frontend1.2c01.example.opentlc.com
 
 [apps]
 ## These are the apps
-app1.e997.internal ansible_ssh_host=app1.e997.example.opentlc.com
-app2.e997.internal ansible_ssh_host=app2.e997.example.opentlc.com
+app1.2c01.internal ansible_ssh_host=app1.2c01.example.opentlc.com
+app2.2c01.internal ansible_ssh_host=app2.2c01.example.opentlc.com
 
 [appdbs]
 ## These are the appdbs
-appdb1.e997.internal ansible_ssh_host=appdb1.e997.example.opentlc.com
+appdb1.2c01.internal ansible_ssh_host=appdb1.2c01.example.opentlc.com
