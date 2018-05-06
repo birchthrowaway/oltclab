@@ -1,6 +1,7 @@
 ---
 # Use Jumpbox to check that OpenStack instances are up
 - hosts: jumpbox
+  gather_facts: no
   tasks:
   - name: Gather facts
     include_role: 
@@ -8,6 +9,7 @@
 
 - name: ping
   hosts: all
+  gather_facts: no
   become: true
   tasks:
   - ping:
