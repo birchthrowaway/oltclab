@@ -1,5 +1,8 @@
 ---
 # Better ansible.
+- name: Gather facts
+  include_role: 
+    name: osp.facts
 
 - name: prepare
   hosts: all
