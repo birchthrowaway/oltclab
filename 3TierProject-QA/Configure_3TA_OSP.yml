@@ -1,8 +1,11 @@
 ---
-# Better ansible.
+# Configure_3TA_OSP
+
 - name: Gather facts
-  include_role: 
-    name: osp.facts
+  hosts: jumpbox
+  become: true
+  roles:
+  -name: osp.facts
 
 - name: prepare
   hosts: all
