@@ -26,29 +26,3 @@
   - name: Gather facts
     include_role: 
        name: osp.facts
-
-# Better ansible.
-
-- name: prepare
-  hosts: all
-  become: true
-  roles:
-  - name: prepare
-
-- name: deploy frontends
-  hosts: frontends
-  become: true
-  roles:
-  - name: frontends
-
-- name: deploy appdbs
-  hosts: appdbs
-  become: true
-  roles:
-  - name: geerlingguy.postgresql
-
-- name: deploy appservers
-  hosts: apps
-  become: true
-  roles:
-  - name: appservers

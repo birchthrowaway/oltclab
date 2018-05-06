@@ -1,0 +1,25 @@
+---
+# Use Jumpbox to check that OpenStack instances are up
+
+- name: osp.facts
+  hosts: jumpbox
+  gather_facts: no
+  tasks:
+  - name: Gather facts
+    include_role: 
+       name: osp.facts
+
+- name: get frontend hostname
+  hosts: jumpbox
+  gather_facts: no
+  tasks:
+  - uri:
+      url: "http://{{ item }}"
+      return_content: yes
+    register: webpage
+    loop: "{{ groups['frontends'] }}"
+
+  - name: Fail unless Ansible does its job
+    fail:
+    when: "'Ansible has done its job' not in webpage['results'][0]['content']"
+
