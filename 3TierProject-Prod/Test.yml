@@ -1,0 +1,16 @@
+---
+# Order Three Tier Application
+# These commmands are run by cloud-user in ~cloud-user
+
+- hosts: jumpbox
+  gather_facts: no
+  tasks:
+
+  - name: query path
+    shell: |
+      echo $PATH
+      whoami
+      pwd
+    register: stuff
+
+  - debug: var=stuff
