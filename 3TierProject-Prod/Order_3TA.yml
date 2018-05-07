@@ -1,0 +1,31 @@
+---
+# Order Three Tier Application
+# These commmands are run by cloud-user in ~cloud-user
+
+- hosts: jumpbox
+  gather_facts: no
+  tasks:
+  - name: get prerequisites
+    shell: |
+      mkdir ~/bin
+      wget http://www.opentlc.com/download/ansible_bootcamp/scripts/common.sh
+      wget http://www.opentlc.com/download/ansible_bootcamp/scripts/jq-linux64 -O ~/bin/jq
+      wget http://www.opentlc.com/download/ansible_bootcamp/scripts/order_svc.sh
+      chmod +x order_svc.sh ~/bin/jq
+    args:
+      executable: /bin/bash 
+
+  - name: write credential.rc
+    include_role: 
+       name: opentlc.credentials
+
+  - name: Place order
+    shell: |
+      source credential.rc ; ./order_svc.sh -y -c 'OPENTLC Automation' -i 'Three Tier Application' -t 1
+    args:
+      executable: /bin/bash 
+
+  - name: delete crential
+    file:
+      state: absent
+      path: /home/cloud-user/credential.rc
