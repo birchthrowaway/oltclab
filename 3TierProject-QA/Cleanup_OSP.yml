@@ -1,0 +1,20 @@
+---
+# Use Jumpbox to destroy OpenStack instances
+- hosts: jumpbox
+  tasks:
+  - name: Destroy frontend instance
+    include_role:
+       name: osp.destroy
+       vars_from: frontend.yaml
+  - name: Destroy app1 instance
+    include_role:
+       name: osp.destroy
+       vars_from: app1.yaml
+  - name: Destroy app2 instance
+    include_role:
+       name: osp.destroy
+       vars_from: app2.yaml
+  - name: Destroy db instance
+    include_role:
+       name: osp.destroy
+       vars_from: db.yaml
