@@ -4,5 +4,6 @@
       name: "{{ instance_name }}"
       image: rhel-guest
       flavor: m2.small
+      state: absent
       delete_fip: yes
       wait: yes
