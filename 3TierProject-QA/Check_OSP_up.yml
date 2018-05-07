@@ -1,15 +1,44 @@
 ---
 # Use Jumpbox to check that OpenStack instances are up
+# - hosts: jumpbox
+#   gather_facts: no
+#   tasks:
+#   - name: Gather facts
+#     include_role: 
+#        name: osp.facts
+
+# - name: ping
+#   hosts: all
+#   gather_facts: no
+#   become: true
+#   tasks:
+#   - ping:
+
+# - name: Check each host is accessible
+#   hosts: all
+#   gather_facts: no
+#   wait_for: host=<host to check> port=80 timeout=3
+#   register: host_accessible
+#   failed_when: False
+
+
+# - name: Wait for each host to be available
+#   wait_for:
+#     host: "{{ instancefloatingip.floating_ip.floating_ip_address }}"
+#     port: 22
+#     search_regex: OpenSSH
+#     timeout: 600
+#   delegate_to: "{{ inventory_hostname }}"
+
+# ping each expected host and fail if any pings fail
+# Note: not using inventory.  I want these hosts regardless.
 - hosts: jumpbox
   gather_facts: no
   tasks:
-  - name: Gather facts
-    include_role: 
-       name: osp.facts
-
-- name: ping
-  hosts: all
-  gather_facts: no
-  become: true
-  tasks:
-  - ping:
+  - name: ping {{item}}
+    command: ping -c1 {{ item }}
+    with_items:
+      - 10.10.10.4
+      - 10.10.10.6
+      - 10.10.10.9
+      - 10.10.10.14
