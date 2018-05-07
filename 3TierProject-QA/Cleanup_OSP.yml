@@ -18,3 +18,9 @@
     include_role:
        name: osp.destroy
        vars_from: db.yaml
+
+# Should delete network, subnets and router as well.
+
+  - name: Destroy network
+    include_role:
+      name: osp.destroynet
