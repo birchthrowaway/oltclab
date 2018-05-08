@@ -2,7 +2,7 @@
 # Better ansible.
 
 - name: prepare
-  hosts: all
+  hosts: prod
   become: true
   roles:
   - name: prepare
