@@ -25,7 +25,7 @@
     args:
       executable: /bin/bash 
 
-  - name: delete crential
+  - name: delete credential.rc
     file:
       state: absent
       path: /home/cloud-user/credential.rc
