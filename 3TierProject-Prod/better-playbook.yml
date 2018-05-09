@@ -3,8 +3,7 @@
 
 - name: wait 30 minutes for new Prod environment
   hosts: localhost
-  pause:
-    minutes: 30
+  command: sleep 1800
 
 - name: reload inventory
   hosts: prod
