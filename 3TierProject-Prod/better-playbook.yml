@@ -1,14 +1,15 @@
 ---
 # Better ansible.
 
-- name: pause
+- name: wait 30 minutes for new Prod environment
+  hosts: localhost
   pause:
     minutes: 30
 
 - name: reload inventory
   hosts: prod
   ping:
-  meta: refresh_inventopry
+  meta: refresh_inventory
     
 - name: prepare
   hosts: prod
