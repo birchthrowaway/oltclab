@@ -1,9 +1,27 @@
 ---
-# Better ansible.
+# wait
 
-- name: wait 30 minutes for new Prod environment
+# wait for your new Production Three Tier Lab to be provisioned.
+# One it is, you'll receive an email with the GUID.
+# The manual task, yet to be automated, is to:
+# 1) log into  bastion.${GUID}.example.opentlc.com,
+#    using the SSH key that you've previously registered with lab.opentlc.com
+# 2) become root, and copy ~/.ssh/${GUID}key.pem to a new credential in Ansible Tower.
+# 3) modify the Configure_3TA_Prod job template, adding that credential
+# You may then repond to this waiting task, allowing the Production environment to be configured.
+
+- name: wait for new Prod environment, and credential
   hosts: jumpbox
   gather_facts: no
   tasks:
-  - name: sleep
-    command: sleep 1800
+  - name: pause
+    pause:
+      prompt: |
+        "wait for your new Production Three Tier Lab to be provisioned."
+        "Once it is, you'll receive an email with the GUID."
+        "The manual task, yet to be automated, is to:"
+        " 1) log into  bastion.${GUID}.example.opentlc.com,"
+        "    using the SSH key that you've previously registered with lab.opentlc.com"
+        " 2) become root, and copy ~/.ssh/${GUID}key.pem to a new credential in Ansible Tower."
+        " 3) modify the Configure_3TA_Prod job template, adding that credential"
+        "You may then repond to this waiting task, allowing the Production environment to be configured."
