@@ -4,16 +4,17 @@
   gather_facts: no
   tasks:
   - name: prompt
-    debug: msg: |
-        "I'm waiting for ten minutes. You must:"
-        "wait for your new Production Three Tier Lab to be provisioned."
-        "Once it is, you'll receive an email with the GUID."
-        "The manual task, yet to be automated, is to:"
-        " 1) log into  bastion.${GUID}.example.opentlc.com,"
-        "    using the SSH key that you've previously registered with lab.opentlc.com"
-        " 2) become root, and copy ~/.ssh/${GUID}key.pem to a new credential in Ansible Tower."
-        " 3) modify the Configure_3TA_Prod job template, adding that credential"
-        "Once the 10 minutes is up I will go ahead and configure the Three Tier App on your new Prod environment."
+    debug:
+      msg: >
+        "I'm waiting for ten minutes. You must:\n"
+        "wait for your new Production Three Tier Lab to be provisioned.\n"
+        "Once it is, you'll receive an email with the GUID.\n"
+        "The manual task, yet to be automated, is to:\n"
+        " 1) log into  bastion.${GUID}.example.opentlc.com,\n"
+        "    using the SSH key that you've previously registered with lab.opentlc.com\n"
+        " 2) become root, and copy ~/.ssh/${GUID}key.pem to a new credential in Ansible Tower.\n"
+        " 3) modify the Configure_3TA_Prod job template, adding that credential\n"
+        "Once the 10 minutes is up I will go ahead and configure the Three Tier App on your new Prod environment.\n"
 
   - name: sleep
     command: sleep 600
