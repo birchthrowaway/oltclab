@@ -1,13 +1,6 @@
 ---
 # Better ansible.
 
-- name: wait 30 minutes for new Prod environment
-  hosts: localhost
-  gather_facts: no
-  tasks:
-  - name: sleep
-    command: sleep 1800
-
 - name: reload inventory
   hosts: prod
   gather_facts: no

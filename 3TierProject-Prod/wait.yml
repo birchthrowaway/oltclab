@@ -1,0 +1,9 @@
+---
+# Better ansible.
+
+- name: wait 30 minutes for new Prod environment
+  hosts: jumpbox
+  gather_facts: no
+  tasks:
+  - name: sleep
+    command: sleep 1800
