@@ -1,11 +1,21 @@
 ---
 # Better ansible.
 
+- name: pause
+  pause:
+    minutes: 30
+
+- name: reload inventory
+  hosts: prod
+  ping:
+  meta: refresh_inventopry
+    
 - name: prepare
   hosts: prod
   become: true
   roles:
   - name: prepare
+
 
 - name: deploy frontends
   hosts: frontends
